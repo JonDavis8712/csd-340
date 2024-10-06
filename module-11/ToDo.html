@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>simple HTML and CSS ToDo List</title>
+    <link rel="stylesheet" href="Todo.css"> 
+</head>
+<body>
+    <div id="container">
+        <h1>Simple HTML and CSS ToDo List</h1>
+        <p>Enter a to-do item:</p>
+        <input type="text" id="newItem">
+        <button onclick="addItem()">Add</button>
+        <button onclick="deleteItem()">Delete Last Entry</button>
+        <button onclick="displayItems()">Display</button>
+    </div>
+
+    <script>
+         let todoList = [];
+
+function addItem() {
+    const newItem = document.getElementById("newItem").value;
+    todoList.push(newItem);
+    alert(`"${newItem}" added to the list at position ${todoList.length}.`);
+    document.getElementById("newItem").value = ""; 
+}
+
+function deleteItem() {
+    if (todoList.length > 0) {
+        todoList.pop(); 
+        alert("Last item deleted!");
+    } else {
+        alert("The list is already empty.");
+    }
+}
+
+function displayItems() {
+    if (todoList.length === 0) {
+        alert("The list is empty.");
+        return;
+    }
+
+    let displayMessage = "To-Do List:\n";
+    for (let i = 0; i < todoList.length; i++) {
+        displayMessage += `${i + 1}. ${todoList[i]}\n`;
+    }
+    alert(displayMessage);
+}
+    </script>
+</body>
+</html>
